@@ -7,6 +7,23 @@ const valor = document.getElementById('valor');
 const status = document.getElementById('status');
 const cadastrar = document.getElementById('cadastrarBtn');
 
+const params = new URLSearchParams(window.location.search);
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const code = params.get('code');
+    if (!code) {
+        window.location.href = '/login/';
+    }
+
+    const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
+    if (!response.ok) {
+        window.location.href = '/login/';
+    }
+})
+
+const match = path.match(/\/cadastrar\/(\d)/);
+
+
 function isValidPlaca(p) {
     if (!p) return false;
     const v = p.toUpperCase().trim();
