@@ -20,27 +20,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (code.length !== 8) {
         window.location.href = '/login/';
     }
+
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
-    const data = await response.json();
-    const user = data.user || 'Usuário';
-    const activeUser = document.getElementById('active-user');
-    activeUser.innerHTML = `${user}`;
-    document.title = `${user} - Buscar`;
+    
 
     if (!response.ok) {
         window.location.href = '/login/';
     }
+
+    const fetcher = await fetch(`https://site2-wqln.onrender.com/api/usuarios/code-user/${code}`);
+    const user = await fetcher.json();
+    console.log('Usuário ativo:', user);
+
+    const activeUser = document.getElementById('active-user');
+
+    activeUser.innerHTML = `${user} - CRDD/RS`;
+    
+    document.title = `${user} - Buscar`;
 });
 
 const time = document.getElementById('time');
 let value = 30;
+time.innerHTML = `Sua sessão expira em ${value} minutos`;
 
-while (value > 0) {
-    time.innerHTML = `Sua sessão expira em ${value} minutos`;
-    setTimeout(() => {
-        value--;
-    }, 60000);
-}
+setInterval(() => {
+    value--;
+}, 60000);
 
 function isValidPlaca(p) {
     if (!p) return false;
