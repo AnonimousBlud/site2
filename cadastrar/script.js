@@ -26,8 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 })
 
-const match = path.match(/\/cadastrar\/(\d)/);
-
 
 function isValidPlaca(p) {
     if (!p) return false;
