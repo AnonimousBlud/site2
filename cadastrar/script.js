@@ -14,8 +14,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!code) {
         window.location.href = '/login/';
     }
-
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
+    const data = await response.json();
+    const user = data.user;
+    const activeUser = document.getElementById('active_user');
+    activeUser.textContent = user;
+    document.title = `${user} - Cadastrar`;
+
     if (!response.ok) {
         window.location.href = '/login/';
     }
