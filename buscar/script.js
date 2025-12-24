@@ -2,6 +2,25 @@ const API = 'https://contempo-30ng.onrender.com';
 const placasBody = document.getElementById('placasBody');
 const searchInput = document.getElementById('search');
 
+const params = new URLSearchParams(window.location.search);
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const code = params.get('code');
+    if (!code) {
+        window.location.href = '/login/';
+    }
+    const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
+    const data = await response.json();
+    const user = data.user;
+    const activeUser = document.getElementById('active-user');
+    activeUser.textContent = user;
+    document.title = `${user} - Buscar`;
+
+    if (!response.ok) {
+        window.location.href = '/login/';
+    }
+})
+
 let placas = [];
 let bootstrapModal;
 document.addEventListener('DOMContentLoaded', () => {
