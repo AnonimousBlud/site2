@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CONTEMPO - Cadastrar</title>
+    <title>CONTEMPO - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -32,17 +32,17 @@
     <main class="min-h-screen flex items-center justify-center">
         <div class="p-6 content bg-white rounded-lg shadow-md">
             <h1 class="text-2xl text-center font-bold mb-4">Login</h1>
-            <p class="mb-4">Digite as informações solicitadas abaixo para entrar</p>
+            <p class="mb-4 text-lg">Digite as informações solicitadas abaixo para entrar</p>
             <form id="loginForm" novalidate>
                 <label for="usuario" class="block mb-2 font-semibold">Nome de Usuário:</label>
                 <input type="text" id="usuario" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-4" placeholder="Digite seu nome de usúario" required />
                 <label for="senha" class="block mb-2 font-semibold">Senha:</label>
-                <input type="text" id="senha" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-4" placeholder="Digite sua senha" required />
+                <input type="text" id="senha" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-0" placeholder="Digite sua senha" required />
+                <p class="text-lg text-red-400 font-normal mb-4" id="errorP"></p>
                 <button id="entrarBtn" type="button" class="btn btn-primary rounded-none py-2 w-full">Entrar</button>
             </form>
         </div>
     </main>
     <script src="./script.js" defer></script>
 </body>
-
 </html>
