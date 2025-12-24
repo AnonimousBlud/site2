@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
     const data = await response.json();
-    const user = data.user;
+    const user = data.user || 'Usuário';
     const activeUser = document.getElementById('active-user');
-    activeUser.textContent = user;
+    activeUser.innerHTML = `${user}`;
     document.title = `${user} - Buscar`;
 
     if (!response.ok) {
