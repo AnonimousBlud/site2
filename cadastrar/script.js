@@ -22,15 +22,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
-    
+    const data = await response.json();
+    const user = data.body.user;
 
     if (!response.ok) {
         window.location.href = '/login/';
     }
-
-    const fetcher = await fetch(`https://site2-wqln.onrender.com/api/usuarios/code-user/${code}`);
-    const user = await fetcher.json();
-    console.log('Usuário ativo:', user);
 
     const activeUser = document.getElementById('active-user');
 

@@ -15,16 +15,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (code.length !== 8) {
         window.location.href = '/login/';
     }
+
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
-    const data = await response.json();
-    const user = data.user || 'Usuário';
-    const activeUser = document.getElementById('active-user');
-    activeUser.innerHTML = `${user}`;
-    document.title = `${user} - Buscar`;
+    const body = await response.json();
+    const user = body.user;
 
     if (!response.ok) {
         window.location.href = '/login/';
     }
+
+    const activeUser = document.getElementById('active-user');
+
+    activeUser.innerHTML = `${user} - CRDD/RS`;
+    
+    document.title = `${user} - Buscar`;
 });
 
 const time = document.getElementById('time');
