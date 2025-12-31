@@ -108,12 +108,6 @@ cadastrar.addEventListener('click', async (e) => {
     const data = await response.json();
     const user = data.body.user;
     const placaValue = placa.value.trim().toUpperCase();
-    
-    const digits = (valor.dataset.digits || '').replace(/\D/g, '');
-    if ((!valorValue || valorValue === '') && digits) {
-        valorValue = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-            .format(parseInt(digits, 10) / 100);
-    }
 
     if (!placaValue) {
         const missing = [];
