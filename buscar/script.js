@@ -5,10 +5,6 @@ const searchInput = document.getElementById('search');
 const cadastro = document.getElementById('cadastro-link');
 const buscar = document.getElementById('buscar-link');
 
-const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
-const data = await response.json();
-const user = data.body.user;
-
 const params = new URLSearchParams(window.location.search);
 
 const code = params.get('code');
@@ -107,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchAll() {
     try {
+        const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
+        const data = await response.json();
+        const user = data.body.user;
         const res = await fetch(`${API}/placas/clientes/${user}`);
         placas = await res.json();
         renderTable();

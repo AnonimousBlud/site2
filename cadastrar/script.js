@@ -14,10 +14,6 @@ const code = params.get('code');
 cadastro.href = window.location.href;
 buscar.href = `/buscar/index.html?code=${code}`;
 
-const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
-const data = await response.json();
-const user = data.body.user;
-
 document.addEventListener('DOMContentLoaded', async () => {
     const code = params.get('code');
     if (!code) {
@@ -113,6 +109,9 @@ valor.addEventListener('input', (e) => {
 
 cadastrar.addEventListener('click', async (e) => {
     e.preventDefault();
+    const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
+    const data = await response.json();
+    const user = data.body.user;
     const placaValue = placa.value.trim().toUpperCase();
     
     const digits = (valor.dataset.digits || '').replace(/\D/g, '');
