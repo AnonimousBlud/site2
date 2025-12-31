@@ -18,15 +18,15 @@
     <nav class="navbar bg-dark flex justify-center">
         <div class="container-fluid">
             <div class="p-2">
-                <a class="navbar-brand text-white flex items-center gap-2" href="?">
+                <p class="navbar-brand text-white flex items-center gap-2">
                     <img src="https://i.postimg.cc/nzjxqnYy/ic-launcher.png" alt="CONTEMPO logo" class="h-9 w-9 object-contain rounded-3xl" />
                     <span class="fw-bold" id="active-user"></span>
-                </a>
+                </p>
                 <p class="text-gray-500 ml-11 text-sm mt-0" id="time"></p>
             </div>
             <div class="flex gap-3">
-                <a class="nav-link active text-white d-inline underline" href="/cadastrar/">Cadastrar</a>
-                <a class="nav-link text-white d-inline underline" href="/buscar/">Buscar</a>
+                <a class="nav-link active text-white d-inline underline" href="cadastro-link">Cadastrar</a>
+                <a class="nav-link text-white d-inline underline" id="buscar-link" href="">Buscar</a>
             </div>
         </div>
     </nav>
@@ -43,19 +43,6 @@
             <form id="cadastrarForm" novalidate>
                 <label for="placa" class="block mb-2 font-semibold">Placa:</label>
                 <input type="text" id="placa" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-4" placeholder="AAA0A00 ou AAA0000" required />
-                <label for="cliente" class="block mb-2 font-semibold">Cliente:</label>
-                <input type="text" id="cliente" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-4" placeholder="Digite o nome do cliente" required />
-                <label for="valor" class="block mb-2 font-semibold">Valor:</label>
-                <input type="text" id="valor" inputmode="numeric" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-4" placeholder="R$ 0,00" required />
-                <label for="status" class="block mb-2 font-semibold">Status:</label>
-                <select id="status" class="border border-gray-300 rounded form-control px-3 py-2 w-full mb-4" required>
-                    <option value="" disabled selected>Selecione o status</option>
-                    <option value="Cadastrada">Cadastrada</option>
-                    <option value="Enviado">Enviado</option>
-                    <option value="Solicitado">Solicitado</option>
-                    <option value="Cobrado">Cobrado</option>
-                    <option value="Pago">Pago</option>
-                </select>
                 <button id="cadastrarBtn" type="button" class="btn btn-primary rounded-none py-2 w-full">Cadastrar</button>
             </form>
         </div>

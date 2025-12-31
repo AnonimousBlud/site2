@@ -2,12 +2,21 @@ const API = 'https://contempo-30ng.onrender.com';
 const div = document.getElementById('content');
 const form = document.getElementById('cadastrarForm');
 const placa = document.getElementById('placa');
-const cliente = document.getElementById('cliente');
-const valor = document.getElementById('valor');
-const status = document.getElementById('status');
 const cadastrar = document.getElementById('cadastrarBtn');
 
+const cadastro = document.getElementById('cadastro-link');
+const buscar = document.getElementById('buscar-link');
+
 const params = new URLSearchParams(window.location.search);
+
+const code = params.get('code');
+
+cadastro.href = window.location.href;
+buscar.href = `/buscar/index.html?code=${code}`;
+
+const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
+const data = await response.json();
+const user = data.body.user;
 
 document.addEventListener('DOMContentLoaded', async () => {
     const code = params.get('code');
@@ -31,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const activeUser = document.getElementById('active-user');
 
-    activeUser.innerHTML = `${user} - CRDD/RS`;
+    activeUser.innerHTML = `${user} - SODESP/RS`;
     
     document.title = `${user} - Buscar`;
 });
@@ -105,9 +114,6 @@ valor.addEventListener('input', (e) => {
 cadastrar.addEventListener('click', async (e) => {
     e.preventDefault();
     const placaValue = placa.value.trim().toUpperCase();
-    const clienteValue = cliente.value.trim();
-    let valorValue = valor.value.trim();
-    const statusValue = status.value;
     
     const digits = (valor.dataset.digits || '').replace(/\D/g, '');
     if ((!valorValue || valorValue === '') && digits) {
@@ -115,27 +121,19 @@ cadastrar.addEventListener('click', async (e) => {
             .format(parseInt(digits, 10) / 100);
     }
 
-    console.log('Cadastro payload:', { placaValue, clienteValue, valorValue, statusValue, digits });
-
-    if (!placaValue || !clienteValue || !valorValue || !statusValue) {
+    if (!placaValue) {
         const missing = [];
         if (!placaValue) missing.push('placa');
-        if (!clienteValue) missing.push('cliente');
-        if (!valorValue) missing.push('valor');
-        if (!statusValue) missing.push('status');
         alert('Por favor, preencha todos os campos. Faltando: ' + missing.join(', '));
         return;
     }
 
     try {
         const payload = {
-            placa: placaValue,
-            cliente: clienteValue,
-            valor: valorValue,
-            status: statusValue
+            placa: placaValue
         };
 
-        const response = await fetch(`${API}/placas`, {
+        const response = await fetch(`${API}/placas/clientes/${user}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
