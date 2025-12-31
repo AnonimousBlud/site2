@@ -102,11 +102,6 @@ placa.addEventListener('input', (e) => {
     sanitizePlacaInput(placa);
 });
 
-valor.addEventListener('input', (e) => {
-    const selStart = valor.selectionStart;
-    formatBRLInput(valor);
-});
-
 cadastrar.addEventListener('click', async (e) => {
     e.preventDefault();
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
