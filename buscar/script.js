@@ -2,17 +2,17 @@ const API = 'https://contempo-30ng.onrender.com';
 const placasBody = document.getElementById('placasBody');
 const searchInput = document.getElementById('search');
 
-const cadastro = document.getElementById('cadastro-link');
-const buscar = document.getElementById('buscar-link');
-
 const params = new URLSearchParams(window.location.search);
 
 const code = params.get('code');
 
-buscar.href = window.location.href;
-cadastro.href = `/cadastrar/index.html?code=${code}`;
-
 document.addEventListener('DOMContentLoaded', async () => {
+    const cadastro = document.getElementById('cadastro-link');
+    const buscar = document.getElementById('buscar-link');
+
+    buscar.href = window.location.href;
+    cadastro.href = `/cadastrar/index.html?code=${code}`;
+
     const code = params.get('code');
     if (!code) {
         window.location.href = '/login/';
