@@ -25,8 +25,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     const response = await fetch(`https://site2-wqln.onrender.com/api/validate/${code}`);
-    const body = await response.json();
-    const user = body.user;
+    const data = await response.json();
+    const user = data.body.user;
 
     if (!response.ok) {
         window.location.href = '/login/';
@@ -38,16 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     document.title = `${user} - Buscar`;
 });
-
-const time = document.getElementById('time');
-let value = 30;
-
-while (value > 0) {
-    time.innerHTML = `Sua sessão expira em ${value} minutos`;
-    setTimeout(() => {
-        value--;
-    }, 60000);
-}
 
 let placas = [];
 let bootstrapModal;

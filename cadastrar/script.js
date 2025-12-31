@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const activeUser = document.getElementById('active-user');
 
     activeUser.innerHTML = `${user} - SODESP/RS`;
-    
-    document.title = `${user} - Buscar`;
+
+    document.title = `${user} - Cadastrar`;
 });
 
 const time = document.getElementById('time');
@@ -55,20 +55,6 @@ function isValidPlaca(p) {
     const mercosul = /^[A-Z]{3}[0-9][A-Z][0-9]{2}$/;
     const antigo = /^[A-Z]{3}[0-9]{4}$/;
     return mercosul.test(v) || antigo.test(v);
-}
-
-function formatBRLInput(el) {
-    let digits = (el.dataset.digits || '') + '';
-    digits = (el.value || '').replace(/\D/g, '');
-    if (digits === '') {
-        el.dataset.digits = '';
-        el.value = '';
-        return;
-    }
-    el.dataset.digits = digits;
-    const num = parseInt(digits, 10);
-    const cents = num / 100;
-    el.value = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(cents);
 }
 
 function sanitizePlacaInput(el) {
@@ -132,7 +118,6 @@ cadastrar.addEventListener('click', async (e) => {
             const data = await response.json();
             alert(`Placa cadastrada com sucesso! ID: ${data.id}`);
             form.reset();
-            valor.dataset.digits = '';
         } else if (response.status === 409) {
             alert('Erro: Placa já existe.');
         } else if (response.status === 400) {
